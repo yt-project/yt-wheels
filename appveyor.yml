@@ -71,7 +71,7 @@ test_script:
   - mkdir for_testing
   - cd for_testing
   - python --version
-  - python -c "import yt; yt.run_nose()"
+  - python -c "import yt"
   - cd ..
 
 artifacts:
