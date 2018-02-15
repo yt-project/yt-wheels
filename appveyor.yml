@@ -7,6 +7,7 @@ environment:
     NP_TEST_DEP: "numpy==1.10.4"
     OTHER_BUILD_DEP: "cython"
     OTHER_TEST_DEP: "nose"
+    GEN_DEP: "setuptools sympy matplotlib"
     EXTRA_FLAGS: ""
     WHEELHOUSE_UPLOADER_USERNAME: travis-worker
     WHEELHOUSE_UPLOADER_SECRET:
@@ -61,7 +62,7 @@ test_script:
   - virtualenv --python %PYTHON%\Python.exe test_env
   - test_env\Scripts\activate.bat
   - where python
-  - pip install %NP_TEST_DEP% %OTHER_TEST_DEP%
+  - pip install %NP_TEST_DEP% %OTHER_TEST_DEP% %GEN_DEP%
 
   # install yt from wheels we built
   - pip install --pre --no-index --find-links %REPO_DIR%\dist\ %PACKAGE_NAME%
