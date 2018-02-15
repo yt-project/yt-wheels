@@ -9,12 +9,12 @@ env:
         - UNICODE_WIDTH=32
         - WHEELHOUSE_UPLOADER_USERNAME=travis-worker
         # Following generated with
-        # travis encrypt -r your-org/your-project-wheels WHEELHOUSE_UPLOADER_SECRET=<the api key>
+        # travis encrypt -r yt-project/yt-wheels WHEELHOUSE_UPLOADER_SECRET=<the-api-key>
         # This is for Rackspace uploads.  Contact Matthew Brett, or the
-        # scikit-learn team, for # permission (and the API key) to upload to
-        # the Rackspace account used here, or use your own account.
+        # scikit-learn team, for permission (and the API key) to upload to the
+        # Rackspace account used here, or use your own account.
         - secure:
-            "MNKyBWOzu7JAUmC0Y+JhPKfytXxY/ADRmUIMEWZV977FLZPgYctqd+lqel2QIFgdHDO1CIdTSymOOFZckM9ICUXg9Ta+8oBjSvAVWO1ahDcToRM2DLq66fKg+NKimd2OfK7x597h/QmUSl4k8XyvyyXgl5jOiLg/EJxNE2r83IA="
+            "BQPA9zye0DjkgojtBKcScK7CpffRbAt72AEZetdlsQCy25/iXTyAxcPQDuIXECAqANzBq5RXbTWWdIYSbC1gxJgtsbLttY1sUFTNbCuRG60uXsyfUqL5KUXLUtY9XUf5DWMVBV27ot34eFWMMSDdWu0xYdY3yiZEsgg5eKTqOFoa+7OI9qDgK9nVhmpS32TzlAjfvp6ji+nhMEqYBjzD4hyhcePmnXCLmGc71qHEh4iX2C1dvQA++UO6frANyudbIeI0P/sz10rUsb4Y/06QGb4tkBwWmRRfj4i7lShkPnQagqtckKmW53Jt6JKXCG5AOn7mMP43w74emlbyc1BsgmwgPkppO9TeNNPEwyteIaqgpBRnOgni0/pbRVk7b07vscHB0pWO1T7dlLQiZIc/gTaPQVXAGNnUUwZSIJOKtReLDhT9wxYq/De3da+1fo1CaCvciGaBW4LaiHXPyfQ4Z1+WQAvAf91HOcihshpcXAjGQp6xeZy/4FN+tLJDA/wcvICDFk/KBxaQhubtT564vZPz1tDzXltO+EpI5MVPq6bk2xqFKJIkXwzmEsiVUqlVLtZ/a8w6XZahllzgbolxIISmXwH8ikOxXn5kV3xD+Fr+iJ7tWOhRjcB/L8rRFslArkygfunLHyZ6TTClwLQ0p2YfTgOG6gsFUeRLhWAnyEE="
 
 language: python
 # The travis Python version is unrelated to the version we build and test
