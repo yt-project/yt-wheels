@@ -52,8 +52,8 @@ matrix:
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.6
-        - NP_BUILD_DEP=numpy==1.10.4
-        - NP_TEST_DEP=numpy==1.10.4
+        - NP_BUILD_DEP=numpy==1.11.3
+        - NP_TEST_DEP=numpy==1.11.3
     - os: osx
       language: generic
       env:
@@ -76,8 +76,8 @@ matrix:
       language: generic
       env:
         - MB_PYTHON_VERSION=3.6
-        - NP_BUILD_DEP=numpy==1.10.4
-        - NP_TEST_DEP=numpy==1.10.4
+        - NP_BUILD_DEP=numpy==1.11.3
+        - NP_TEST_DEP=numpy==1.11.3
 
 before_install:
     - BUILD_DEPENDS="$NP_BUILD_DEP Cython"
