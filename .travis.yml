@@ -94,13 +94,13 @@ install:
 script:
     - install_run $PLAT
 
-#after_success:
-#    # Upload wheels to Rackspace container
-#    - pip install wheelhouse-uploader
-#    # This uploads the wheels to a Rackspace container owned by the
-#    # scikit-learn team, available at http://wheels.scipy.org.  See above
-#    # for information on using this account or choosing another.
-#    - python -m wheelhouse_uploader upload --local-folder
-#        ${TRAVIS_BUILD_DIR}/wheelhouse/
-#        --no-update-index
-#        wheels
+after_success:
+    # Upload wheels to Rackspace container
+    - pip install wheelhouse-uploader
+    # This uploads the wheels to a Rackspace container owned by the
+    # scikit-learn team, available at http://wheels.scipy.org.  See above
+    # for information on using this account or choosing another.
+    - python -m wheelhouse_uploader upload --local-folder
+        ${TRAVIS_BUILD_DIR}/wheelhouse/
+        --no-update-index
+        wheels
