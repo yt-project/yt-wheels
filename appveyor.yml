@@ -11,7 +11,7 @@ environment:
     EXTRA_FLAGS: ""
     WHEELHOUSE_UPLOADER_USERNAME: travis-worker
     WHEELHOUSE_UPLOADER_SECRET:
-      secure: 9s0gdDGnNnTt7hvyNpn0/ZzOMGPdwPp2SewFTfGzYk7uI+rdAN9rFq2D1gAP4NQh
+      secure: +Mbme++1Q+y3cMXFI32HTxmgRVo1N2fZH9DkimK9keGKudTLKQjLMCDh0w8ZYvcm
 
   matrix:
     - PYTHON: C:\Python27
@@ -78,13 +78,13 @@ artifacts:
   # Archive the generated wheel package in the ci.appveyor.com build report.
   - path: "%REPO_DIR%\\dist\\*"
 
-# on_success:
-#   # Upload the generated wheel package to Rackspace
-#   # On Windows, Apache Libcloud cannot find a standard CA cert bundle so we
-#   # disable the ssl checks.
-#   - pip install wheelhouse-uploader
-#   - "python -m wheelhouse_uploader upload
-#     --no-ssl-check --local-folder=%REPO_DIR%\\dist --no-update-index wheels"
+on_success:
+  # Upload the generated wheel package to Rackspace
+  # On Windows, Apache Libcloud cannot find a standard CA cert bundle so we
+  # disable the ssl checks.
+  - pip install wheelhouse-uploader
+  - "python -m wheelhouse_uploader upload
+    --no-ssl-check --local-folder=%REPO_DIR%\\dist --no-update-index wheels"
 
 cache:
   # Use the appveyor cache to avoid re-downloading large archives such
