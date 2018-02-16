@@ -4,7 +4,7 @@ env:
         # Commit from your-project that you want to build
         - BUILD_COMMIT=yt-3.4.0
         # Non-numpy or testing dependencies
-        - GEN_DEPENDS="setuptools numpy matplotlib sympy"
+        - GEN_DEPENDS="setuptools sympy matplotlib"
         - PLAT=x86_64
         - UNICODE_WIDTH=32
         - WHEELHOUSE_UPLOADER_USERNAME=travis-worker
@@ -113,7 +113,7 @@ matrix:
 
 before_install:
     - BUILD_DEPENDS="$NP_BUILD_DEP Cython"
-    - TEST_DEPENDS="$NP_TEST_DEP nose $GEN_DEPS"
+    - TEST_DEPENDS="$NP_TEST_DEP nose $GEN_DEPENDS"
     - source multibuild/common_utils.sh
     - source multibuild/travis_steps.sh
     - before_install
