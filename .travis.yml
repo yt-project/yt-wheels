@@ -37,10 +37,6 @@ install:
     - build_wheel $REPO_DIR $PLAT
 
 jobs:
-  exclude:
-    # Exclude the default Python 3.5 build
-    - python: 3.5
-
   include:
     - stage: tests
       os: linux
