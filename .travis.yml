@@ -2,7 +2,7 @@ env:
     global:
         - REPO_DIR=yt
         # Commit from your-project that you want to build
-        - BUILD_COMMIT=yt-3.5.1
+        - BUILD_COMMIT=yt-3.6.0
         # Non-numpy or testing dependencies
         - GEN_DEPENDS="setuptools sympy matplotlib"
         - PLAT=x86_64
