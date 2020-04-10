@@ -29,50 +29,65 @@ matrix:
     # Exclude the default Python 3.5 build
     - python: 3.5
   include:
-    - os: linux
+    - stage: tests
+      os: linux
       env:
         - MB_PYTHON_VERSION=3.5
         - NP_BUILD_DEP=numpy==1.10.4
         - NP_TEST_DEP=numpy==1.10.4
-    - os: linux
+    
+    - stage: tests
+      os: linux
       env:
         - MB_PYTHON_VERSION=3.6
         - NP_BUILD_DEP=numpy==1.11.3
         - NP_TEST_DEP=numpy==1.11.3
-    - os: linux
+    
+    - stage: tests
+      os: linux
       env:
         - MB_PYTHON_VERSION=3.7
         - NP_BUILD_DEP=numpy==1.14.5
         - NP_TEST_DEP=numpy==1.14.5
-    - os: linux
+    
+    - stage: tests
+      os: linux
       env:
         - MB_PYTHON_VERSION=3.8
-        - NP_BUILD_DEP=numpy==1.17.3
-        - NP_TEST_DEP=numpy==1.17.3
-    - os: osx
+        - NP_BUILD_DEP=numpy==1.17.5
+        - NP_TEST_DEP=numpy==1.17.5
+    
+    - stage: tests
+      os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=3.5
         - NP_BUILD_DEP=numpy==1.10.4
         - NP_TEST_DEP=numpy==1.10.4
-    - os: osx
+    
+    - stage: tests
+      os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=3.6
         - NP_BUILD_DEP=numpy==1.11.3
         - NP_TEST_DEP=numpy==1.11.3
-    - os: osx
+    
+    - stage: tests
+      os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=3.7
         - NP_BUILD_DEP=numpy==1.14.5
         - NP_TEST_DEP=numpy==1.14.5
-    - os: osx
+    
+    - stage: tests
+      os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=3.8
-        - NP_BUILD_DEP=numpy==1.17.3
-        - NP_TEST_DEP=numpy==1.17.3
+        - NP_BUILD_DEP=numpy==1.17.5
+        - NP_TEST_DEP=numpy==1.17.5
 
 before_install:
     - BUILD_DEPENDS="$NP_BUILD_DEP Cython"
