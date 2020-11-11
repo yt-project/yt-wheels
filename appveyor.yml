@@ -9,9 +9,6 @@ environment:
     OTHER_TEST_DEP: "nose"
     GEN_DEP: "setuptools sympy matplotlib ipython"
     EXTRA_FLAGS: ""
-    WHEELHOUSE_UPLOADER_USERNAME: travis-worker
-    WHEELHOUSE_UPLOADER_SECRET:
-      secure: +Mbme++1Q+y3cMXFI32HTxmgRVo1N2fZH9DkimK9keGKudTLKQjLMCDh0w8ZYvcm
 
   matrix:
     - PYTHON: C:\Python35
@@ -87,12 +84,14 @@ artifacts:
   - path: "%REPO_DIR%\\dist\\*"
 
 on_success:
-  # Upload the generated wheel package to Rackspace
-  # On Windows, Apache Libcloud cannot find a standard CA cert bundle so we
-  # disable the ssl checks.
-  - python -m pip install wheelhouse-uploader
-  - "python -m wheelhouse_uploader upload
-    --no-ssl-check --local-folder=%REPO_DIR%\\dist --no-update-index wheels"
+  # Upload the generated wheels to anaconda.org/multibuild-wheels-staging
+  # using YT_STAGING_UPLOAD_TOKEN which is set as an environment variable 
+  # in the appveyor CI configuration settings. The current token was generated 
+  # by munkm at https://anaconda.org/multibuild-wheels-staging/settings/access
+  #
+  #
+  - python -m pip install git+https://github.com/Anaconda-Server/anaconda-client
+  - IF NOT "%YT_STAGING_UPLOAD_TOKEN%" == "" anaconda -t %YT_STAGING_UPLOAD_TOKEN% upload --force -u "multibuild-wheels-staging" "dist\*.whl"
 
 cache:
   # Use the appveyor cache to avoid re-downloading large archives such
