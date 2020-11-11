@@ -57,9 +57,9 @@ install:
 
 build_script:
   # Install the dependencies of the project.
-  - pip install %NP_BUILD_DEP% %OTHER_BUILD_DEP%
+  - python -m pip install %NP_BUILD_DEP% %OTHER_BUILD_DEP%
   # Build wheel
-  - pip install wheel
+  - python -m pip install wheel
   - cd %REPO_DIR%
   - git checkout %BUILD_COMMIT%
   - python setup.py bdist_wheel
@@ -70,10 +70,10 @@ test_script:
   - virtualenv --python %PYTHON%\Python.exe test_env
   - test_env\Scripts\activate.bat
   - where python
-  - pip install %NP_TEST_DEP% %OTHER_TEST_DEP% %GEN_DEP%
+  - python -m pip install %NP_TEST_DEP% %OTHER_TEST_DEP% %GEN_DEP%
 
   # install yt from wheels we built
-  - pip install --pre --no-index --find-links %REPO_DIR%\dist\ %PACKAGE_NAME%
+  - python -m pip install --pre --no-index --find-links %REPO_DIR%\dist\ %PACKAGE_NAME%
 
   # Change into an innocuous directory and find tests from installation
   - mkdir for_testing
@@ -90,7 +90,7 @@ on_success:
   # Upload the generated wheel package to Rackspace
   # On Windows, Apache Libcloud cannot find a standard CA cert bundle so we
   # disable the ssl checks.
-  - pip install wheelhouse-uploader
+  - python -m pip install wheelhouse-uploader
   - "python -m wheelhouse_uploader upload
     --no-ssl-check --local-folder=%REPO_DIR%\\dist --no-update-index wheels"
 
