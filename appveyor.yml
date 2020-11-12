@@ -3,8 +3,6 @@ environment:
     REPO_DIR: yt
     PACKAGE_NAME: yt
     BUILD_COMMIT: yt-3.6.0
-    NP_BUILD_DEP: "numpy==1.10.4"
-    NP_TEST_DEP: "numpy==1.10.4"
     OTHER_BUILD_DEP: "cython"
     OTHER_TEST_DEP: "nose"
     GEN_DEP: "setuptools sympy matplotlib ipython"
@@ -12,17 +10,17 @@ environment:
 
   matrix:
     - PYTHON: C:\Python36
-      NP_BUILD_DEP: "numpy==1.12"
-      NP_TEST_DEP: "numpy==1.12"
+      NP_BUILD_DEP: "numpy==1.15.4"
+      NP_TEST_DEP: "numpy==1.15.4"
     - PYTHON: C:\Python36-x64
-      NP_BUILD_DEP: "numpy==1.12"
-      NP_TEST_DEP: "numpy==1.12"
+      NP_BUILD_DEP: "numpy==1.15.4"
+      NP_TEST_DEP: "numpy==1.15.4"
     - PYTHON: C:\Python37
-      NP_BUILD_DEP: "numpy==1.14.5"
-      NP_TEST_DEP: "numpy==1.14.5"
+      NP_BUILD_DEP: "numpy==1.16.5"
+      NP_TEST_DEP: "numpy==1.16.5"
     - PYTHON: C:\Python37-x64
-      NP_BUILD_DEP: "numpy==1.14.5"
-      NP_TEST_DEP: "numpy==1.14.5"
+      NP_BUILD_DEP: "numpy==1.16.5"
+      NP_TEST_DEP: "numpy==1.16.5"
     - PYTHON: C:\Python38
       NP_BUILD_DEP: "numpy==1.17.5"
       NP_TEST_DEP: "numpy==1.17.5"
