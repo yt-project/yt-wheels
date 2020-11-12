@@ -87,4 +87,5 @@ on_success:
   #
   #
   - python -m pip install git+https://github.com/Anaconda-Server/anaconda-client
+  - IF NOT "%YT_STAGING_UPLOAD_TOKEN%" == "" echo "anaconda token detected"
   - IF NOT "%YT_STAGING_UPLOAD_TOKEN%" == "" anaconda -t %YT_STAGING_UPLOAD_TOKEN% upload --force -u "multibuild-wheels-staging" "dist\*.whl"
