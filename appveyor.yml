@@ -5,7 +5,7 @@ environment:
     BUILD_COMMIT: yt-3.6.1
     OTHER_BUILD_DEP: "cython"
     OTHER_TEST_DEP: "nose"
-    GEN_DEP: "setuptools sympy matplotlib==3.2.1 ipython"
+    GEN_DEP: "setuptools sympy matplotlib ipython"
     EXTRA_FLAGS: ""
 
   matrix:

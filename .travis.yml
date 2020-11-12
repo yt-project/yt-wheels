@@ -4,7 +4,7 @@ env:
         # Commit from your-project that you want to build
         - BUILD_COMMIT=yt-3.6.1
         # Non-numpy or testing dependencies
-        - GEN_DEPENDS="setuptools sympy matplotlib==3.2.1"
+        - GEN_DEPENDS="setuptools sympy matplotlib"
         - PLAT=x86_64
         - UNICODE_WIDTH=32
 
