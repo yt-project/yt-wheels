@@ -3,31 +3,24 @@ environment:
     REPO_DIR: yt
     PACKAGE_NAME: yt
     BUILD_COMMIT: yt-3.6.0
-    NP_BUILD_DEP: "numpy==1.10.4"
-    NP_TEST_DEP: "numpy==1.10.4"
     OTHER_BUILD_DEP: "cython"
     OTHER_TEST_DEP: "nose"
-    GEN_DEP: "setuptools sympy matplotlib ipython"
+    GEN_DEP: "setuptools sympy matplotlib==3.2.1 ipython"
     EXTRA_FLAGS: ""
-    WHEELHOUSE_UPLOADER_USERNAME: travis-worker
-    WHEELHOUSE_UPLOADER_SECRET:
-      secure: +Mbme++1Q+y3cMXFI32HTxmgRVo1N2fZH9DkimK9keGKudTLKQjLMCDh0w8ZYvcm
 
   matrix:
-    - PYTHON: C:\Python35
-    - PYTHON: C:\Python35-x64
     - PYTHON: C:\Python36
-      NP_BUILD_DEP: "numpy==1.12"
-      NP_TEST_DEP: "numpy==1.12"
+      NP_BUILD_DEP: "numpy==1.15.4"
+      NP_TEST_DEP: "numpy==1.15.4"
     - PYTHON: C:\Python36-x64
-      NP_BUILD_DEP: "numpy==1.12"
-      NP_TEST_DEP: "numpy==1.12"
+      NP_BUILD_DEP: "numpy==1.15.4"
+      NP_TEST_DEP: "numpy==1.15.4"
     - PYTHON: C:\Python37
-      NP_BUILD_DEP: "numpy==1.14.5"
-      NP_TEST_DEP: "numpy==1.14.5"
+      NP_BUILD_DEP: "numpy==1.16.5"
+      NP_TEST_DEP: "numpy==1.16.5"
     - PYTHON: C:\Python37-x64
-      NP_BUILD_DEP: "numpy==1.14.5"
-      NP_TEST_DEP: "numpy==1.14.5"
+      NP_BUILD_DEP: "numpy==1.16.5"
+      NP_TEST_DEP: "numpy==1.16.5"
     - PYTHON: C:\Python38
       NP_BUILD_DEP: "numpy==1.17.5"
       NP_TEST_DEP: "numpy==1.17.5"
@@ -57,9 +50,9 @@ install:
 
 build_script:
   # Install the dependencies of the project.
-  - pip install %NP_BUILD_DEP% %OTHER_BUILD_DEP%
+  - python -m pip install %NP_BUILD_DEP% %OTHER_BUILD_DEP%
   # Build wheel
-  - pip install wheel
+  - python -m pip install wheel
   - cd %REPO_DIR%
   - git checkout %BUILD_COMMIT%
   - python setup.py bdist_wheel
@@ -70,10 +63,10 @@ test_script:
   - virtualenv --python %PYTHON%\Python.exe test_env
   - test_env\Scripts\activate.bat
   - where python
-  - pip install %NP_TEST_DEP% %OTHER_TEST_DEP% %GEN_DEP%
+  - python -m pip install %NP_TEST_DEP% %OTHER_TEST_DEP% %GEN_DEP%
 
   # install yt from wheels we built
-  - pip install --pre --no-index --find-links %REPO_DIR%\dist\ %PACKAGE_NAME%
+  - python -m pip install --pre --no-index --find-links %REPO_DIR%\dist\ %PACKAGE_NAME%
 
   # Change into an innocuous directory and find tests from installation
   - mkdir for_testing
@@ -87,12 +80,14 @@ artifacts:
   - path: "%REPO_DIR%\\dist\\*"
 
 on_success:
-  # Upload the generated wheel package to Rackspace
-  # On Windows, Apache Libcloud cannot find a standard CA cert bundle so we
-  # disable the ssl checks.
-  - pip install wheelhouse-uploader
-  - "python -m wheelhouse_uploader upload
-    --no-ssl-check --local-folder=%REPO_DIR%\\dist --no-update-index wheels"
+  # Upload the generated wheels to anaconda.org/multibuild-wheels-staging
+  # using YT_STAGING_UPLOAD_TOKEN which is set as an environment variable 
+  # in the appveyor CI configuration settings. The current token was generated 
+  # by munkm at https://anaconda.org/multibuild-wheels-staging/settings/access
+  #
+  #
+  - python -m pip install git+https://github.com/Anaconda-Server/anaconda-client
+  - IF NOT "%YT_STAGING_UPLOAD_TOKEN%" == "" anaconda -t %YT_STAGING_UPLOAD_TOKEN% upload --force -u "multibuild-wheels-staging" "dist\*.whl"
 
 cache:
   # Use the appveyor cache to avoid re-downloading large archives such
