@@ -2,7 +2,7 @@ environment:
   global:
     REPO_DIR: yt
     PACKAGE_NAME: yt
-    BUILD_COMMIT: yt-3.6.1
+    BUILD_COMMIT: yt-4.0.0
     OTHER_BUILD_DEP: "cython"
     OTHER_TEST_DEP: "nose"
     GEN_DEP: "setuptools sympy matplotlib ipython"
